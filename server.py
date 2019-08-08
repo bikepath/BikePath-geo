@@ -2,12 +2,12 @@ from mesa_geo.visualization.ModularVisualization import ModularServer
 from mesa.visualization.modules import ChartModule, TextElement
 from mesa.visualization.UserParam import UserSettableParameter
 from model import GeoModel
-from mesa_geo_folder.visualization.MapModule import MapModule
+from mesa_geo.visualization.MapModule import MapModule
 
 
-class HappyElement(TextElement):
+class BikeElement(TextElement):
     """
-    Display a text count of how many happy agents there are.
+    Display a text count of how many bikes there are.
     """
 
     def __init__(self):
@@ -39,10 +39,10 @@ def road_draw(agent):
     return portrayal
 
 
-happy_element = HappyElement()
+bike_element = BikeElement()
 map_element = MapModule(road_draw, [42.3601, -71.0589], 14, 500, 500)
-happy_chart = ChartModule([{"Label": "bikes", "Color": "Blue"}])
+bike_chart = ChartModule([{"Label": "bikes", "Color": "Blue"}])
 server = ModularServer(
-    GeoModel, [map_element, happy_element, happy_chart], "BikePath", model_params
+    GeoModel, [map_element, bike_element, bike_chart], "BikePath", model_params
 )
 server.launch()

@@ -47,7 +47,6 @@ var sidebar = $("#sidebar");
 var ws = new WebSocket((window.location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/ws");
 
 ws.onopen = function() {
-    console.log("Connection opened!");
     send({"type": "get_params"}); // Request model parameters when websocket is ready
     reset();
 };
@@ -215,9 +214,6 @@ var initGUI = function() {
 
 /** Parse and handle an incoming message on the WebSocket connection. */
 ws.onmessage = function(message) {
-
-    console.log(message.data);
-
     var msg = JSON.parse(message.data.replace(/\bNaN\b/g, "null"));
 
     switch (msg["type"]) {
@@ -236,7 +232,6 @@ ws.onmessage = function(message) {
             $(playPauseButton.children()[0]).text("Done");
             break;
         case "model_params":
-            console.log(msg["params"]);
             model_params = msg["params"];
             initGUI();
             break;

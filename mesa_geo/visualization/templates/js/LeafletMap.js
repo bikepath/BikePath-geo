@@ -30,7 +30,6 @@ var MapModule = function (view, zoom, map_width, map_height) {
     }
 
     AgentLayer.remove()
-    console.log(data)
     AgentLayer = L.geoJSON(data, {
       onEachFeature: PopUpProperties,
       style: function (feature) {
